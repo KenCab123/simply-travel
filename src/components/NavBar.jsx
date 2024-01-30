@@ -1,5 +1,13 @@
+import { Link } from "react-router-dom";
+
 const NavBar = () => {
-  return <div>NavBar</div>;
+  return (
+    <nav>
+      <h1>
+        <Link to="/">Simply Travel</Link>
+      </h1>
+    </nav>
+  );
 };
 
 export default NavBar;
