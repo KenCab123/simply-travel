@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const SearchForm = () => {
+  let URL = import.meta.env.VITE_TRAVEL_API_URL;
   const navigate = useNavigate();
   const [climate, setClimate] = useState('')
   const [departureAirport, setDepartureAirport] = useState('')
@@ -13,8 +14,18 @@ const SearchForm = () => {
     navigate('/destinations')
     console.log(climate)
     console.log(departureAirport)
+    if(departureAirport) {
+      URL += `&origin=${departureAirport}`
+    }
+    if(startDate) {
+      URL += `&depart_date=${startDate}`
+    }
+    if(endDate) {
+      URL += `&return_date=${endDate}`
+    }
     console.log(startDate)
     console.log(endDate)
+    console.log(URL)
   }
   const handleClimate = (e) => {
     setClimate(e.target.value)

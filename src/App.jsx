@@ -6,15 +6,15 @@ import DestinationPage from "./components/DestinationPage";
 import Cart from "./components/Cart";
 
 import { useState, useEffect } from "react";
-import axios from "axios";
 
 const App = () => {
   const [ip, setIP] = useState("");
 
   const getData = async () => {
-    const res = await axios.get("https://api.ipify.org/?format=json");
-    // console.log(res.data);
-    setIP(res.data.ip);
+    const res = await fetch("https://api.ipify.org/?format=json");
+    const data = await res.json()
+    // console.log(data);
+    setIP(data.ip);
   };
 
   useEffect(() => {
