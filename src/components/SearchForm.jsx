@@ -2,30 +2,34 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const SearchForm = () => {
-  let URL = import.meta.env.VITE_TRAVEL_API_URL;
+  
   const navigate = useNavigate();
   const [climate, setClimate] = useState('')
   const [departureAirport, setDepartureAirport] = useState('')
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
+  const [URL, setURL] = useState(import.meta.env.VITE_TRAVEL_API_URL)
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    navigate('/destinations')
     console.log(climate)
     console.log(departureAirport)
+    let newURL = URL;
     if(departureAirport) {
-      URL += `&origin=${departureAirport}`
+      newURL += `&origin=${departureAirport}`
     }
     if(startDate) {
-      URL += `&depart_date=${startDate}`
+      newURL += `&depart_date=${startDate}`
     }
     if(endDate) {
-      URL += `&return_date=${endDate}`
+      newURL += `&return_date=${endDate}`
     }
-    console.log(startDate)
-    console.log(endDate)
-    console.log(URL)
+    console.log(newURL)
+    // setURL(newURL)
+    // console.log(URL)
+    // console.log(startDate)
+    // console.log(endDate)
+    navigate('/destinations', {state: {URL: newURL}})
   }
   const handleClimate = (e) => {
     setClimate(e.target.value)
@@ -44,7 +48,7 @@ const SearchForm = () => {
     <form onSubmit={handleSubmit}>
       <label htmlFor="climate" >
         climate 🌡️
-        <select name="climate" id="climate"onChange={handleClimate}>
+        <select value={climate} name="climate" id="climate"onChange={handleClimate}>
           <option value=""></option>
           <option value="warm">warm 🌤️</option>
           <option value="hot">hot ☀️</option>
