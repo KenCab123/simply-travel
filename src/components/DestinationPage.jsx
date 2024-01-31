@@ -11,7 +11,7 @@ const DestinationPage = () => {
   },[])
   return <div>
     {destinations.map(destination => {
-      return <li>{destination.name}</li>
+      return <li key={destination.name}>{destination.name}</li>
       console.log(destination)
     })}
   </div>;
