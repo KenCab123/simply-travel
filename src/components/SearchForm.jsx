@@ -1,30 +1,34 @@
+import { Link } from "react-router-dom";
+
 const SearchForm = () => {
   return (
     <form>
       <label htmlFor="climate">
-        climate
+        climate 🌡️
         <select name="climate" id="climate">
           <option value=""></option>
-          <option value="warm">warm</option>
-          <option value="hot">hot</option>
-          <option value="cold">cold</option>
+          <option value="warm">warm 🌤️</option>
+          <option value="hot">hot ☀️</option>
+          <option value="cold">cold ❄️</option>
         </select>
       </label>
-      <label htmlFor="departure">
+      <label htmlFor="departure-airport">
         Departure Airport
-        <input id="departure" name="departure" type="text" />
+        <input id="departure-airport" name="departure-airport" type="text" />
       </label>
 
-      <label htmlFor="start-date">
-        Departure Date
-        <input id="start-date" name="start-date" type="date" />
+      <label htmlFor="departure-date">
+        Departure Date 🛫
+        <input id="departure-date" name="departure-date" type="date" />
       </label>
 
-      <label htmlFor="end-date">
-        Return Date
-        <input id="end-date" name="end-date" type="date" />
+      <label htmlFor="return-date">
+        Return Date 🛬
+        <input id="return-date" name="return-date" type="date" />
       </label>
-      <button type="submit">🔍</button>
+      <Link to="/destinations">
+        <button type="submit">🔍</button>
+      </Link>
     </form>
   );
 };
