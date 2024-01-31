@@ -8,13 +8,12 @@ const SearchForm = () => {
   const [departureAirport, setDepartureAirport] = useState('')
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
-  const [URL, setURL] = useState(import.meta.env.VITE_TRAVEL_API_URL)
 
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(climate)
     console.log(departureAirport)
-    let newURL = URL;
+    let newURL = import.meta.env.VITE_TRAVEL_API_URL;
     if(departureAirport) {
       newURL += `&origin=${departureAirport}`
     }
@@ -25,10 +24,6 @@ const SearchForm = () => {
       newURL += `&return_date=${endDate}`
     }
     console.log(newURL)
-    // setURL(newURL)
-    // console.log(URL)
-    // console.log(startDate)
-    // console.log(endDate)
     navigate('/destinations', {state: {URL: newURL}})
   }
   const handleClimate = (e) => {
