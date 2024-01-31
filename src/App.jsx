@@ -2,7 +2,7 @@ import NavBar from "./components/NavBar";
 import LandingPage from "./components/LandingPage";
 import { Routes, Route } from "react-router-dom";
 import AboutUs from "./components/AboutUs";
-import IndexPage from "./components/IndexPage";
+import DestinationPage from "./components/DestinationPage";
 import Cart from "./components/Cart";
 
 import { useState, useEffect } from "react";
@@ -13,7 +13,7 @@ const App = () => {
 
   const getData = async () => {
     const res = await axios.get("https://api.ipify.org/?format=json");
-    console.log(res.data);
+    // console.log(res.data);
     setIP(res.data.ip);
   };
 
@@ -29,7 +29,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/about" element={<AboutUs />} />
-        <Route path="/destinations" element={<IndexPage/>} />
+        <Route path="/destinations" element={<DestinationPage/>} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
     </>
