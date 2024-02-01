@@ -2,48 +2,43 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const SearchForm = () => {
-  
+
   const navigate = useNavigate();
-  const [climate, setClimate] = useState('')
-  const [departureAirport, setDepartureAirport] = useState('')
-  const [startDate, setStartDate] = useState('')
-  const [endDate, setEndDate] = useState('')
+  const [formInput, setFormInput] = useState({
+    climate: '',
+    departureAirport: '',
+    startDate: '',
+    endDate: ''
+  })
 
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(climate)
-    console.log(departureAirport)
     let newURL = import.meta.env.VITE_TRAVEL_API_URL;
-    if(departureAirport) {
-      newURL += `&origin=${departureAirport}`
+    if (formInput.departureAirport) {
+      newURL += `&origin=${formInput.departureAirport.toUpperCase()}`
     }
-    if(startDate) {
-      newURL += `&depart_date=${startDate}`
+    if (formInput.startDate) {
+      newURL += `&depart_date=${formInput.startDate}`
     }
-    if(endDate) {
-      newURL += `&return_date=${endDate}`
+    if (formInput.endDate) {
+      newURL += `&return_date=${formInput.endDate}`
     }
+    newURL += `&destination=MIA`
     console.log(newURL)
-    navigate('/destinations', {state: {URL: newURL}})
+    console.log('form inputs: ', formInput)
+    navigate('/destinations', { state: { URL: newURL } })
   }
-  const handleClimate = (e) => {
-    setClimate(e.target.value)
-  }
-  const handleDepartureAirport = (e) => {
-    setDepartureAirport(e.target.value)
-  }
-  const handleStartDate = (e) => {
-    setStartDate(e.target.value)
-  }
-  const handleEndDate = (e) => {
-    setEndDate(e.target.value)
+
+  const handleChange = (e) => {
+    setFormInput({ ...formInput, [e.target.name]: e.target.value })
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="climate" >
         climate 🌡️
-        <select value={climate} name="climate" id="climate"onChange={handleClimate}>
+        <select value={formInput.climate} name="climate" id="climate" onChange={handleChange}>
           <option value=""></option>
           <option value="warm">warm 🌤️</option>
           <option value="hot">hot ☀️</option>
@@ -52,20 +47,20 @@ const SearchForm = () => {
       </label>
       <label htmlFor="departure-airport">
         Departure Airport
-        <input id="departure-airport" value={departureAirport} name="departure-airport" type="text" onChange={handleDepartureAirport}/>
+        <input id="departure-airport" value={formInput.departureAirport} name="departureAirport" type="text" onChange={handleChange} />
       </label>
 
       <label htmlFor="departure-date">
         Departure Date 🛫
-        <input id="departure-date" value={startDate} name="departure-date" type="date" onChange={handleStartDate}/>
+        <input id="departure-date" value={formInput.startDate} name="startDate" type="date" onChange={handleChange} />
       </label>
 
       <label htmlFor="return-date">
         Return Date 🛬
-        <input id="return-date" value={endDate} name="return-date" type="date" onChange={handleEndDate}/>
+        <input id="return-date" value={formInput.endDate} name="endDate" type="date" onChange={handleChange} />
       </label>
-        <button type="submit">🔍</button>
-  
+      <button type="submit">🔍</button>
+
     </form>
   );
 };
