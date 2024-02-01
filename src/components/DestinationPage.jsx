@@ -6,19 +6,6 @@ import { Link, useLocation } from "react-router-dom";
 const DestinationPage = ({ setDestinations, destinations }) => {
   let location = useLocation()
 
-  const [destinationState, setDestinationState] = useState({
-    id: "",
-    destination: "",
-    iata: "",
-    climate: "",
-    temperature: {
-      high: "",
-      low: ""
-    },
-    popularity: 0,
-    image: "",
-    summary: ""
-  });
   const [cheapestFlight, setCheapestFlight] = useState({})
 
   let URL = location.state.URL
@@ -26,7 +13,7 @@ const DestinationPage = ({ setDestinations, destinations }) => {
     getDestinations().then(data => {
       setDestinations(data)
     })
-    // getCheapestFlight(URL)
+    getCheapestFlight(URL)
   }, [])
 
   return <div>
@@ -37,7 +24,7 @@ const DestinationPage = ({ setDestinations, destinations }) => {
       // console.log(getCheapestFlight(URL))
       return (
         <Link to={`/${destination.id}`} key={destination.id} >
-          <li >{destination.name} {destination.iata}</li>
+          <li >{destination.destination} {destination.iata}</li>
         </Link>
       )
     })}
