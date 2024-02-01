@@ -23,7 +23,6 @@ const SearchForm = () => {
     if (formInput.endDate) {
       newURL += `&return_date=${formInput.endDate}`
     }
-    newURL += `&destination=MIA`
     navigate('/destinations', { state: { URL: newURL } })
   }
 
