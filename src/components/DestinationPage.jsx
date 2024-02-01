@@ -1,30 +1,45 @@
 import { getDestinations, getCheapestFlight } from "../api/fetch";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 
-const DestinationPage = () => {
-
+const DestinationPage = ({ setDestinations, destinations }) => {
   let location = useLocation()
-  // console.log(`URL STATE: `, location.state)
-  // console.log(getDestinations())
-  const [destinations, setDestinations] = useState([])
-  // let URL = 'https://api.travelpayouts.com/v1/prices/cheap?token=1007c3b2956c6bb6d7d10b91b86c7c17&origin=JFK&depart_date=2024-02&return_date=2024-02&destination=MIA'
+
+  const [destinationState, setDestinationState] = useState({
+    id: "",
+    destination: "",
+    iata: "",
+    climate: "",
+    temperature: {
+      high: "",
+      low: ""
+    },
+    popularity: 0,
+    image: "",
+    summary: ""
+  });
+  const [cheapestFlight, setCheapestFlight] = useState({})
+
   let URL = location.state.URL
-  // console.log(URL)
   useEffect(() => {
-    // getDestinations().then(data => {
-    //   setDestinations(data)
-    // })
-    getCheapestFlight(URL)
-  },[])
+    getDestinations().then(data => {
+      setDestinations(data)
+    })
+    // getCheapestFlight(URL)
+  }, [])
 
   return <div>
     {destinations.map(destination => {
       URL += `&destination=${destination.iata}`
+      // setDestinationState(destination)
       // console.log(URL)
       // console.log(getCheapestFlight(URL))
-      return <li key={destination.id}>{destination.iata}</li>
+      return (
+        <Link to={`/${destination.id}`} key={destination.id} >
+          <li >{destination.name} {destination.iata}</li>
+        </Link>
+      )
     })}
   </div>;
 };
