@@ -13,7 +13,6 @@ const SearchForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(climate)
     let newURL = import.meta.env.VITE_TRAVEL_API_URL;
     if (formInput.departureAirport) {
       newURL += `&origin=${formInput.departureAirport.toUpperCase()}`
@@ -25,8 +24,6 @@ const SearchForm = () => {
       newURL += `&return_date=${formInput.endDate}`
     }
     newURL += `&destination=MIA`
-    console.log(newURL)
-    console.log('form inputs: ', formInput)
     navigate('/destinations', { state: { URL: newURL } })
   }
 
