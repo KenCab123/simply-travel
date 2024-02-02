@@ -33,3 +33,9 @@ export const getAirlineNames = () => {
       return fetch(options.url, options).then((response) => response.json())
       
 }
+
+export const getNearestAirport = (ip) => {
+    const url = `http://www.travelpayouts.com/whereami?locale=en&ip=${ip}`
+
+    return fetch(url).then(response => response.json())
+}
