@@ -9,7 +9,6 @@ export const getDestinations = () => {
 }
 
 export const getCheapestFlight = (url) => {
-    console.log(url)
     const options = {
         method: 'GET',
         headers: {
@@ -19,4 +18,18 @@ export const getCheapestFlight = (url) => {
         }
     };
     return fetch(url, options).then((response) => response.json())
+}
+
+export const getAirlineNames = () => {
+    const options = {
+        method: 'GET',
+        url: 'https://travelpayouts-travelpayouts-flight-data-v1.p.rapidapi.com/data/en-GB/airlines.json',
+        headers: {
+          'X-Access-Token': '1007c3b2956c6bb6d7d10b91b86c7c17',
+          'X-RapidAPI-Key': '78ce0a311dmshfe195ee1b56e4aep1fecb0jsne84f5de91d91',
+          'X-RapidAPI-Host': 'travelpayouts-travelpayouts-flight-data-v1.p.rapidapi.com'
+        }
+      };
+      return fetch(options.url, options).then((response) => response.json())
+      
 }
