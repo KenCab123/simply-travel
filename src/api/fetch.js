@@ -11,12 +11,12 @@ export const getDestinations = () => {
 export const getCheapestFlight = (url) => {
     console.log(url)
     const options = {
-    method: 'GET',
-    headers: {
-    'X-Access-Token': token,
-    'X-RapidAPI-Key': apiKey,
-    'X-RapidAPI-Host': 'travelpayouts-travelpayouts-flight-data-v1.p.rapidapi.com'
-    }
+        method: 'GET',
+        headers: {
+            'X-Access-Token': token,
+            'X-RapidAPI-Key': apiKey,
+            'X-RapidAPI-Host': 'travelpayouts-travelpayouts-flight-data-v1.p.rapidapi.com'
+        }
     };
-    return fetch(url, options).then((response) => response.json()).then(data => console.log(data))
+    return fetch(url, options).then((response) => response.json())
 }
