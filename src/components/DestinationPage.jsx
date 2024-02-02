@@ -26,8 +26,11 @@ const DestinationPage = ({
     <div>
       {Object.keys(cheapestFlights).length > 0 &&
         destinations.map((destination) => {
-          return (
-            <Link to={`/${destination.id}`} key={destination.id}>
+          if(findFirstObjectKey(cheapestFlights, destination.iata) === 'No flights available'){
+            return;
+          } else {
+            return (
+              <Link to={`/${destination.id}`} key={destination.id}>
               <li>
                 {destination.destination} {destination.iata}
                 <p>
@@ -37,9 +40,10 @@ const DestinationPage = ({
               </li>
             </Link>
           );
+        }
         })}
-    </div>
-  );
+        </div>
+        );
 };
 
 export default DestinationPage;
