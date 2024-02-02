@@ -1,7 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { getNearestAirport } from "../api/fetch";
+
 
 const SearchForm = () => {
+  const [ip, setIP] = useState("");
+  const [ nearestAirport, setNearestAirport ] = useState('')
+  
+
+  const getData = async () => {
+    const res = await fetch("https://api.ipify.org/?format=json");
+    const data = await res.json();
+    setIP(data.ip);
+  };
+
+  useEffect(() => {
+    //passing getData method to the lifecycle method
+    getData();
+    getNearestAirport(ip).then(data => {
+      setNearestAirport(data.iata)
+    })
+  }, []);
 
   const navigate = useNavigate();
   const [formInput, setFormInput] = useState({
@@ -29,6 +48,15 @@ const SearchForm = () => {
   const handleChange = (e) => {
     setFormInput({ ...formInput, [e.target.name]: e.target.value })
   }
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -41,9 +69,19 @@ const SearchForm = () => {
           <option value="cold">cold ❄️</option>
         </select>
       </label>
+      <p onMouseEnter={openModal} onMouseLeave={closeModal}>Nearest Airport</p>
+        {/* The Modal */}
+        {isOpen && (
+          <div className="modal">
+            {/* Modal Content */}
+            <div className="modal-content">
+              <p>{nearestAirport}</p>
+            </div>
+          </div>
+        )}
       <label htmlFor="departure-airport">
         Departure Airport
-        <input id="departure-airport" value={formInput.departureAirport} name="departureAirport" type="text" onChange={handleChange} />
+        <input id="departure-airport" placeholder={nearestAirport} value={formInput.departureAirport} name="departureAirport" type="text" onChange={handleChange} />
       </label>
 
       <label htmlFor="departure-date">

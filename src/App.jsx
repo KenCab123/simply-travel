@@ -10,20 +10,7 @@ import { useState, useEffect } from "react";
 
 const App = () => {
   const [cheapestFlights, setCheapestFlights] = useState({});
-
-  const [ip, setIP] = useState("");
   const [destinations, setDestinations] = useState([]);
-
-  const getData = async () => {
-    const res = await fetch("https://api.ipify.org/?format=json");
-    const data = await res.json();
-    setIP(data.ip);
-  };
-
-  useEffect(() => {
-    //passing getData method to the lifecycle method
-    getData();
-  }, []);
 
   return (
     <>
