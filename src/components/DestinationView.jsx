@@ -1,9 +1,17 @@
 import { useLocation, useParams } from "react-router-dom";
+import { findFirstObjectKey } from "../helpers/helpers";
+import { useState } from "react";
 
-const DestinationView = ({ destinations }) => {
+const DestinationView = ({ destinations, cheapestFlights }) => {
+  // const [cheapestFlights, setCheapestFlights] = useState({});
   const { id } = useParams();
-
   const destination = destinations.find((destination) => destination.id === id);
+  const [flightInfo, setFlightInfo] = useState(
+    findFirstObjectKey(cheapestFlights, destination.iata)
+  );
+
+  console.log(flightInfo);
+
   console.log(destination);
   return (
     <>
