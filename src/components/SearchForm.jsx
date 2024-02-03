@@ -5,8 +5,8 @@ import { getNearestAirport } from "../api/fetch";
 
 const SearchForm = () => {
   const [ip, setIP] = useState("");
-  const [ nearestAirport, setNearestAirport ] = useState('')
-  
+  const [nearestAirport, setNearestAirport] = useState('')
+
 
   const getData = async () => {
     const res = await fetch("https://api.ipify.org/?format=json");
@@ -32,6 +32,10 @@ const SearchForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    if (formInput.departureAirport.length !== 3) {
+      alert("Please enter a valid airport code")
+      return;
+    }
     let newURL = import.meta.env.VITE_TRAVEL_API_URL;
     if (formInput.departureAirport) {
       newURL += `&origin=${formInput.departureAirport.toUpperCase()}`
@@ -70,15 +74,15 @@ const SearchForm = () => {
         </select>
       </label>
       <p onMouseEnter={openModal} onMouseLeave={closeModal}>Nearest Airport</p>
-        {/* The Modal */}
-        {isOpen && (
-          <div className="modal">
-            {/* Modal Content */}
-            <div className="modal-content">
-              <p>{nearestAirport}</p>
-            </div>
+      {/* The Modal */}
+      {isOpen && (
+        <div className="modal">
+          {/* Modal Content */}
+          <div className="modal-content">
+            <p>{nearestAirport}</p>
           </div>
-        )}
+        </div>
+      )}
       <label htmlFor="departure-airport">
         Departure Airport
         <input id="departure-airport" placeholder={nearestAirport} value={formInput.departureAirport} name="departureAirport" type="text" onChange={handleChange} />
