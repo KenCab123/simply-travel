@@ -1,34 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getNearestAirport } from "../api/fetch";
+import "./SearchForm.css"
 
-
-const SearchForm = () => {
-  const [ip, setIP] = useState("");
-  const [ nearestAirport, setNearestAirport ] = useState('')
+const SearchForm = ({formInput, setFormInput, nearestAirport}) => {
   
-
-  const getData = async () => {
-    const res = await fetch("https://api.ipify.org/?format=json");
-    const data = await res.json();
-    setIP(data.ip);
-  };
-
-  useEffect(() => {
-    //passing getData method to the lifecycle method
-    getData();
-    getNearestAirport(ip).then(data => {
-      setNearestAirport(data.iata)
-    })
-  }, []);
-
+  
+  // console.log(`DEPARTURE AIRPORT: `, formInput.departureAirport)
   const navigate = useNavigate();
-  const [formInput, setFormInput] = useState({
-    climate: '',
-    departureAirport: '',
-    startDate: '',
-    endDate: ''
-  })
+  
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -48,6 +28,7 @@ const SearchForm = () => {
   const handleChange = (e) => {
     setFormInput({ ...formInput, [e.target.name]: e.target.value })
   }
+
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
@@ -59,9 +40,9 @@ const SearchForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="climate" >
-        climate 🌡️
+    <form onSubmit={handleSubmit} className="search-form">
+      <label className="climate" htmlFor="climate" >
+        <span >climate 🌡️</span>
         <select value={formInput.climate} name="climate" id="climate" onChange={handleChange}>
           <option value=""></option>
           <option value="warm">warm 🌤️</option>
@@ -69,28 +50,29 @@ const SearchForm = () => {
           <option value="cold">cold ❄️</option>
         </select>
       </label>
+      <div className="modal">
+
       <p onMouseEnter={openModal} onMouseLeave={closeModal}>Nearest Airport</p>
         {/* The Modal */}
         {isOpen && (
-          <div className="modal">
-            {/* Modal Content */}
-            <div className="modal-content">
+          <div className="modal-content">
               <p>{nearestAirport}</p>
             </div>
-          </div>
         )}
-      <label htmlFor="departure-airport">
-        Departure Airport
+      </div>
+
+      <label className="depart-airport"  htmlFor="departure-airport">
+        <span >Departure Airport 🛄</span>
         <input id="departure-airport" placeholder={nearestAirport} value={formInput.departureAirport} name="departureAirport" type="text" onChange={handleChange} />
       </label>
 
-      <label htmlFor="departure-date">
-        Departure Date 🛫
+      <label className="depart-date" htmlFor="departure-date">
+        <span>Departure Date 🛫</span>
         <input id="departure-date" value={formInput.startDate} name="startDate" type="date" onChange={handleChange} />
       </label>
 
-      <label htmlFor="return-date">
-        Return Date 🛬
+      <label className="return-date" htmlFor="return-date">
+        <span>Return Date 🛬</span>
         <input id="return-date" value={formInput.endDate} name="endDate" type="date" onChange={handleChange} />
       </label>
       <button type="submit">🔍</button>

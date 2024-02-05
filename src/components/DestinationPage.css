@@ -1,0 +1,40 @@
+.destination {
+    display: flex;
+    flex-direction: column;
+    margin-top: 130px;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+    position: relative;
+}
+.destination a{
+    text-decoration: none;
+    color: inherit;
+}
+.destination h1{
+    position: fixed;
+    top: 50px;
+    /* border: 1px solid green; */
+    display: block;
+    width: 80%;
+    font-size: 40px;
+    left: 120px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    background: white;
+    border-bottom: 1px solid black;
+    /* z-index: 1000; */
+}
+.destination li{
+    /* z-index: -2; */
+    border: 1px solid black;
+    width: 900px;
+    margin-top: 40px;
+    padding: 30px;
+    /* margin-left: 30%; */
+}
+
+.destination p {
+    margin-left: 750px;
+    margin-top: -20px;
+}

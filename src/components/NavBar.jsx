@@ -1,17 +1,42 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import "./NavBar.css"
+import Cart from "./Cart";
 
 const NavBar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
+  const handleCheckout = () => {
+    alert(`Purchase Complete! Thanks For Traveling With Simply Travel!`)
+  }
   return (
-    <nav>
+    <nav className="nav-bar">
       <h1>
-        <Link to="/">Simply Travel</Link>
+        <Link to="/" className="nav-link">Simply Travel</Link>
       </h1>
       <ul>
         <li>
-          <Link to="/about">About Us</Link>
+          <Link to="/about" className="nav-link">About Us</Link>
         </li>
         <li>
-          <Link to="/cart">Cart</Link>
+            <button className="nav-link cart-btn" onMouseEnter={openModal}>Cart</button>
+            {isOpen && (
+              <>
+              <div className="cart">
+              <Cart/>
+              <button onClick={handleCheckout} className="checkout-btn">Checkout</button>
+              <button onClick={closeModal} className="close-btn">❌</button>
+              </div>
+              </>
+            )}
         </li>
       </ul>
     </nav>

@@ -1,0 +1,68 @@
+.destination-view {
+    /* border: 1px solid black; */
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    width: 90%;
+    margin-top: 100px;
+    margin-left: 60px;
+    padding-bottom: 30px;
+    padding-top: 20px;
+}
+.destination-view h1{
+    padding-bottom: 5px;
+    margin-left: 40px;
+    font-size: 50px;
+}
+.destination-view img{
+    height: 200px;
+    width: 290px;
+    margin-top: -40px;
+    margin-left: 40px;
+    /* border: 3px solid black; */
+}
+
+.details {
+    padding: 5px;
+    width: 60%;
+    margin-left: 370px;
+    margin-top: -50px;
+}
+.summary {
+    font-size: 20px;
+}
+.airline {
+    margin-left: 38%;
+    margin-top: -10px;
+    padding-bottom: 10px;
+    font-size: 20px;
+    /* position: absolute; */
+}
+.price {
+    margin-left: 37%;
+    margin-top: -180px;
+    font-size: 40px;
+    position: absolute;
+}
+.add-to-cart {
+    margin-left: 65%;
+    border: none;
+    border-radius: 20px;
+    padding: 20px;
+    margin-top: -230px;
+    font-size: 17px;
+    /* color: white; */
+    /* background: gray; */
+    position: absolute;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.high-low {
+    margin-left: 44%;
+    font-size: 20px;
+    display: flex;
+    width: 210px;
+    padding: 5px;
+    gap: 20px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.3);
+    /* border: 1px solid blue; */
+}

@@ -17,7 +17,14 @@ export const getCheapestFlight = (url) => {
             'X-RapidAPI-Host': 'travelpayouts-travelpayouts-flight-data-v1.p.rapidapi.com'
         }
     };
-    return fetch(url, options).then((response) => response.json())
+    return fetch(url, options) .then(response => {
+
+        console.log(response)
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
 }
 
 export const getAirlineNames = () => {
