@@ -4,6 +4,8 @@ import { Link, useLocation } from "react-router-dom";
 import { findFirstObjectKey } from "../helpers/helpers";
 import "./DestinationPage.css"
 import LoadingSpinner from "./LoadingSpinner";
+// const URL = import.meta.env.VITE_BASE_API_URL
+
 
 const DestinationPage = ({
   setDestinations,
@@ -14,21 +16,27 @@ const DestinationPage = ({
 }) => {
   let location = useLocation();
 
-  const URL = location.state.URL;
+//  let URL = location.state.URL;
+//  console.log(URL)
   // const [isDataLoaded, setIsDataLoaded] = useState()
   const [error, setError] = useState('')
+  const [URL, setURL] = useState(location.state.URL || window.localStorage)
   const [loading, setLoading] = useState(false)
   
     useEffect(() => {
       setLoading(true)
       getDestinations().then((data) => {
         setDestinations(data);
+        // console.log(destinations)
       });
        if (URL) { // Check if URL is truthy and valid
       getCheapestFlight(URL).then((data) => {
+        // console.log(`url: `, URL)
+        // console.log(`data: `, Object.keys(data.data))
+        // console.log(`data: `, data.data)
         setCheapestFlights(data.data);
-        console.log(`fetch completed`);
-        // console.log(URL);
+        // console.log(Object.keys(cheapestFlights))
+        // console.log(`fetch completed`);
       }).then(data => setLoading(false)).catch((error) => {
         console.error('Error fetching cheapest flight:', error);
         setError(`INVALID ORIGIN.`)
@@ -39,6 +47,10 @@ const DestinationPage = ({
     } 
     }, [URL]);
 
+    useEffect(() => {
+      // figure out how to set the item in localstorage. then in the state on line 23 u have to do to or operator.
+    }, [])
+
     const filteredDestinations = destinations.filter(destination => destination.climate === formInput.climate)
    
       return (
@@ -47,6 +59,7 @@ const DestinationPage = ({
           <>
          <h1>Results</h1>
          {error && <h2 style={{ color: 'red' , fontSize: '100px', padding: '80px'}}>{error}</h2>}
+         {error && <Link to="/">Home</Link>}
        {Object.keys(cheapestFlights).length > 0 ?
         filteredDestinations.map((destination) => {
           if(findFirstObjectKey(cheapestFlights, destination.iata) === 'No flights available'){

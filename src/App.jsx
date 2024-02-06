@@ -14,6 +14,8 @@ const App = () => {
   const [destinations, setDestinations] = useState([]);
   const [ip, setIP] = useState("");
   const [ nearestAirport, setNearestAirport ] = useState('')
+  const [tickets, setTickets] = useState([])
+
   const [formInput, setFormInput] = useState({
     climate: '',
     departureAirport: '',
@@ -41,7 +43,7 @@ const App = () => {
 
   return (
     <>
-      <NavBar />
+      <NavBar tickets={tickets}/>
       <Routes>
         <Route path="/" element={<LandingPage formInput={formInput} setFormInput={setFormInput} nearestAirport={nearestAirport}/>} />
         
@@ -65,6 +67,8 @@ const App = () => {
               destinations={destinations}
               cheapestFlights={cheapestFlights}
               formInput={formInput}
+              setTickets={setTickets}
+              tickets={tickets}
             />
           }
         />

@@ -1,11 +1,13 @@
 import "./Cart.css"
+import {formatDateTime} from "../helpers/helpers"
 
-const Cart = () => {
+const Cart = ({tickets}) => {
+  console.log(tickets)
   return <div className="cart-container">
     <ul >
-    <li>This is the Cart</li>
-    <li>This is the Cart</li>
-    <li>This is the Cart</li>
+      {tickets.map((ticket,index) => {
+        return <li key={index}>{`To: ${ticket.destination}, From: ${ticket.departureAirport.toUpperCase()}, Price: $${ticket.price}, Depart Time: ${formatDateTime(ticket.departureDate).formattedDate}, Return Time: ${formatDateTime(ticket.returnDate).formattedDate}`}</li>
+      })}
     </ul>
     <h4>Total: $</h4>
     </div>

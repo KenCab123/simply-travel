@@ -3,7 +3,7 @@ import { useState } from "react";
 import "./NavBar.css"
 import Cart from "./Cart";
 
-const NavBar = () => {
+const NavBar = ({tickets}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
@@ -30,8 +30,8 @@ const NavBar = () => {
             <button className="nav-link cart-btn" onMouseEnter={openModal}>Cart</button>
             {isOpen && (
               <>
-              <div className="cart">
-              <Cart/>
+              <div>
+              <Cart tickets={tickets}/>
               <button onClick={handleCheckout} className="checkout-btn">Checkout</button>
               <button onClick={closeModal} className="close-btn">❌</button>
               </div>

@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Playfair Display', serif;
+  font-family: "Helvetica neue", serif;
+  /* font-family: "Proxima nova", serif; */
   /* background-color: rgb(12, 97, 63); */
 }

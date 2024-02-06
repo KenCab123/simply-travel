@@ -1,61 +1,120 @@
-.destination-view {
-    /* border: 1px solid black; */
+/* .destination-view {
     border-radius: 20px;
-    background: rgba(0, 0, 0, 0.2);
     width: 90%;
     margin-top: 100px;
     margin-left: 60px;
     padding-bottom: 30px;
     padding-top: 20px;
+} */
+.warm-weather, .hot-weather, .cold-weather, .add-to-cart {
+    border-radius: 10px;
 }
-.destination-view h1{
+.warm-weather, .hot-weather, .cold-weather {
+    width: 85%;
+    padding: 30px;
+    margin-top: 100px;
+    margin-left: 100px;
+}
+
+.warm-weather {
+    background: rgb(240, 179, 93);
+}
+.hot-weather {
+    background: rgb(240, 93, 93);
+}
+.cold-weather {
+    background: rgb(93, 159, 240);
+}
+.warm-weather h1, .hot-weather h1, .cold-weather h1{
+    padding: 0px 0px 10px 10px;
+}
+.warm-weather img, .hot-weather img, .cold-weather img{
+    padding: 10px 0px 10px 0px;
+    width: 290px;
+    height: 200px;
+}
+.details, .weather, .date {
+    position: absolute;
+}
+.weather{
+    width: fit-content;
+    margin-top: -250px;
+    margin-left: 71%;
+    font-size: 19px;
+}
+.summary {
+    padding: 20px;
+}
+.date {
+    margin-top: 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.add-to-cart {
+    margin-left: 91%;
+    margin-top: 8px;
+    padding: 10px;
+    width: 100px;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.details {
+    display: grid;
+    grid-template-columns: 300px 300px;
+    column-gap: 50px;
+    row-gap: 40px;
+    margin-top: -160px;
+    margin-left: 34%;
+    font-size: 20px;
+}
+
+
+
+/* .destination-view h1{
     padding-bottom: 5px;
     margin-left: 40px;
     font-size: 50px;
-}
-.destination-view img{
+} */
+/* .destination-view img{
     height: 200px;
     width: 290px;
     margin-top: -40px;
     margin-left: 40px;
-    /* border: 3px solid black; */
-}
+} */
 
-.details {
+/* .details {
     padding: 5px;
     width: 60%;
     margin-left: 370px;
     margin-top: -50px;
-}
-.summary {
+} */
+/* .summary {
     font-size: 20px;
-}
-.airline {
+} */
+/* .airline {
     margin-left: 38%;
     margin-top: -10px;
     padding-bottom: 10px;
     font-size: 20px;
-    /* position: absolute; */
-}
-.price {
+} */
+/* .price {
     margin-left: 37%;
     margin-top: -180px;
     font-size: 40px;
     position: absolute;
-}
-.add-to-cart {
+} */
+/* .add-to-cart {
     margin-left: 65%;
     border: none;
     border-radius: 20px;
     padding: 20px;
     margin-top: -230px;
     font-size: 17px;
-    /* color: white; */
-    /* background: gray; */
     position: absolute;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-.high-low {
+} */
+/* .high-low {
     margin-left: 44%;
     font-size: 20px;
     display: flex;
@@ -64,5 +123,4 @@
     gap: 20px;
     border-radius: 10px;
     background: rgba(0, 0, 0, 0.3);
-    /* border: 1px solid blue; */
-}
+} */

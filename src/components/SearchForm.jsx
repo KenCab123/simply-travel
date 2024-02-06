@@ -40,10 +40,12 @@ const SearchForm = ({formInput, setFormInput, nearestAirport}) => {
   };
 
   return (
+    <>
+    <h1>Enter Your Details Below</h1>
     <form onSubmit={handleSubmit} className="search-form">
       <label className="climate" htmlFor="climate" >
         <span >climate 🌡️</span>
-        <select value={formInput.climate} name="climate" id="climate" onChange={handleChange}>
+        <select value={formInput.climate} name="climate" id="climate" onChange={handleChange} required>
           <option value=""></option>
           <option value="warm">warm 🌤️</option>
           <option value="hot">hot ☀️</option>
@@ -78,6 +80,7 @@ const SearchForm = ({formInput, setFormInput, nearestAirport}) => {
       <button type="submit">🔍</button>
 
     </form>
+    </>
   );
 };
 
