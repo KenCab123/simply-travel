@@ -22,6 +22,8 @@ const SearchForm = ({formInput, setFormInput, nearestAirport}) => {
     if (formInput.endDate) {
       newURL += `&return_date=${formInput.endDate}`
     }
+    window.localStorage.setItem("url", JSON.stringify(newURL))
+    
     navigate('/destinations', { state: { URL: newURL } })
   }
 

@@ -1,6 +1,6 @@
 import { getDestinations, getCheapestFlight } from "../api/fetch";
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, json, useLocation } from "react-router-dom";
 import { findFirstObjectKey } from "../helpers/helpers";
 import "./DestinationPage.css"
 import LoadingSpinner from "./LoadingSpinner";
@@ -19,14 +19,16 @@ const DestinationPage = ({
 //  let URL = location.state.URL;
 //  console.log(URL)
   // const [isDataLoaded, setIsDataLoaded] = useState()
+  console.log(JSON.parse(window.localStorage.getItem("url")))
   const [error, setError] = useState('')
-  const [URL, setURL] = useState(location.state.URL || window.localStorage)
+  const [URL, setURL] = useState( JSON.parse(window.localStorage.getItem("url")))
   const [loading, setLoading] = useState(false)
   
     useEffect(() => {
       setLoading(true)
       getDestinations().then((data) => {
         setDestinations(data);
+        console.log(`i ran`, data)
         // console.log(destinations)
       });
        if (URL) { // Check if URL is truthy and valid
@@ -47,9 +49,10 @@ const DestinationPage = ({
     } 
     }, [URL]);
 
-    useEffect(() => {
-      // figure out how to set the item in localstorage. then in the state on line 23 u have to do to or operator.
-    }, [])
+    // useEffect(() => {
+    //   // figure out how to set the item in localstorage. then in the state on line 23 u have to do to or operator.
+    //   window.localStorage.setItem("url", JSON.stringify(URL))
+    // }, [])
 
     const filteredDestinations = destinations.filter(destination => destination.climate === formInput.climate)
    

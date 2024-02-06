@@ -14,6 +14,10 @@ const DestinationView = ({ destinations, cheapestFlights, formInput, tickets, se
   const [flightInfo, setFlightInfo] = useState(
     findFirstObjectKey(cheapestFlights, destination.iata)
   );
+  // let location = useLocation()
+  // let URL = location.state.URL;
+  // console.log(location.state)
+
   const navigate = useNavigate()
   useEffect(() => {
     getAirlineNames().then(data => {
@@ -42,9 +46,8 @@ const DestinationView = ({ destinations, cheapestFlights, formInput, tickets, se
 
   const handleDelete = () => {
     const options = { method: "DELETE"};
-    fetch(`${URL}/api/travel/${id}`, options)
-    navigate("/destinations")
-    
+    fetch(`${URL}/${id}`, options)
+    navigate("/")
   }
 
   
