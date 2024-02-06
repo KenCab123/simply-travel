@@ -19,7 +19,7 @@ export const getCheapestFlight = (url) => {
     };
     return fetch(url, options) .then(response => {
 
-        console.log(response)
+        console.log(response.data)
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }

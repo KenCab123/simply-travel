@@ -54,6 +54,7 @@ const App = () => {
               destinations={destinations}
               cheapestFlights={cheapestFlights}
               setCheapestFlights={setCheapestFlights}
+              formInput={formInput}
             />
           }
         />

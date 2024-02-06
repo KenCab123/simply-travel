@@ -3,20 +3,24 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { findFirstObjectKey } from "../helpers/helpers";
 import "./DestinationPage.css"
+import LoadingSpinner from "./LoadingSpinner";
 
 const DestinationPage = ({
   setDestinations,
   destinations,
   cheapestFlights,
   setCheapestFlights,
+  formInput
 }) => {
   let location = useLocation();
 
   const URL = location.state.URL;
   // const [isDataLoaded, setIsDataLoaded] = useState()
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
   
     useEffect(() => {
+      setLoading(true)
       getDestinations().then((data) => {
         setDestinations(data);
       });
@@ -25,30 +29,33 @@ const DestinationPage = ({
         setCheapestFlights(data.data);
         console.log(`fetch completed`);
         // console.log(URL);
-      }).catch((error) => {
+      }).then(data => setLoading(false)).catch((error) => {
         console.error('Error fetching cheapest flight:', error);
         setError(`INVALID ORIGIN.`)
+        setLoading(false)
+        setCheapestFlights({})
         // Handle the error, e.g., set an error state or display an error message
       });
     } 
     }, [URL]);
+
+    const filteredDestinations = destinations.filter(destination => destination.climate === formInput.climate)
    
       return (
         <div className='destination'>
-       {/* {cheapestFlights.every(flight => flight === `No flights available`) ? <div>No flights available</div> : } */}
-         {/* {if(cheapestFlights.every(flight => flight === `No flights available`)) {
-           throw new Error(`NO FLIGHTS AVAILABLE`)
-         }
-         } */}
+          {loading ? <LoadingSpinner /> : 
+          <>
          <h1>Results</h1>
          {error && <h2 style={{ color: 'red' , fontSize: '100px', padding: '80px'}}>{error}</h2>}
-       {Object.keys(cheapestFlights).length > 0 &&
-         destinations.map((destination) => {
-           if(findFirstObjectKey(cheapestFlights, destination.iata) === 'No flights available'){
-             return;
-           } else {
-             return (
-               <Link to={`/${destination.id}`} key={destination.id} >
+       {Object.keys(cheapestFlights).length > 0 ?
+        filteredDestinations.map((destination) => {
+          if(findFirstObjectKey(cheapestFlights, destination.iata) === 'No flights available'){
+            // console.log(`No flights available.`)
+            return;
+          } else {
+            //  console.log(`testing`)
+            return (
+              <Link to={`/${destination.id}`} key={destination.id} >
                <li >
                  {destination.destination} {destination.iata}
                  <p>
@@ -58,8 +65,10 @@ const DestinationPage = ({
                </li>
              </Link>
            );
-         }
-         })}
+          }
+        }) : <h1>No flights available.</h1>}
+      </>
+      }
          </div>
          )
 };
