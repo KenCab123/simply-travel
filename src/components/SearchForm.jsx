@@ -22,8 +22,10 @@ const SearchForm = ({formInput, setFormInput, nearestAirport}) => {
     if (formInput.endDate) {
       newURL += `&return_date=${formInput.endDate}`
     }
+    // console.log(`formInput depart date: ${formInput.startDate}, formInput return date: ${formInput.endDate} `)
     window.localStorage.setItem("url", JSON.stringify(newURL))
-    
+    // console.log(newURL)
+    // console.log(`formInput ${formInput.startDate}`)
     navigate('/destinations', { state: { URL: newURL } })
   }
 
@@ -43,15 +45,15 @@ const SearchForm = ({formInput, setFormInput, nearestAirport}) => {
 
   return (
     <>
-    <h1>Enter Your Details Below</h1>
     <form onSubmit={handleSubmit} className="search-form">
+      <h1>Enter Your Details Below</h1>
       <label className="climate" htmlFor="climate" >
-        <span >climate 🌡️</span>
+        <span >🌡️ climate</span>
         <select value={formInput.climate} name="climate" id="climate" onChange={handleChange} required>
           <option value=""></option>
-          <option value="warm">warm 🌤️</option>
-          <option value="hot">hot ☀️</option>
-          <option value="cold">cold ❄️</option>
+          <option value="warm">🌤️ warm</option>
+          <option value="hot">☀️ hot</option>
+          <option value="cold">❄️ cold</option>
         </select>
       </label>
       <div className="modal">
@@ -66,18 +68,18 @@ const SearchForm = ({formInput, setFormInput, nearestAirport}) => {
       </div>
 
       <label className="depart-airport"  htmlFor="departure-airport">
-        <span >Departure Airport 🛄</span>
+        <span >🛄 Departure Airport </span>
         <input id="departure-airport" placeholder={nearestAirport} value={formInput.departureAirport} name="departureAirport" type="text" onChange={handleChange} />
       </label>
 
       <label className="depart-date" htmlFor="departure-date">
-        <span>Departure Date 🛫</span>
-        <input id="departure-date" value={formInput.startDate} name="startDate" type="date" onChange={handleChange} />
+        <span>🛫 Departure Date</span>
+        <input id="departure-date" value={formInput.startDate} name="startDate" type="date" onChange={handleChange}/>
       </label>
 
       <label className="return-date" htmlFor="return-date">
-        <span>Return Date 🛬</span>
-        <input id="return-date" value={formInput.endDate} name="endDate" type="date" onChange={handleChange} />
+        <span>🛫 Return Date</span>
+        <input id="return-date" value={formInput.endDate} name="endDate" type="date" onChange={handleChange}/>
       </label>
       <button type="submit">🔍</button>
 

@@ -28,7 +28,7 @@
 .nav-link {
     text-decoration: none;
     color: black;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .nav-link:hover {
@@ -41,22 +41,6 @@
     font-size: 15px;
 }
 
-.checkout-btn {
-    margin-top: 270px;
-    margin-left: -250px;
-    border: none;
-    width: 312px;
-    height: 40px;
-    background: rgb(42, 169, 42);
-    font-size: 19px;
-    color: white;
-    padding:5px ;
-    border-radius: 5px;
-    border-bottom-right-radius: 0px;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
-    position: absolute;
-}
 .close-btn {
     margin-top: 270px;
     margin-left: 60px;

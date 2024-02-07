@@ -1,6 +1,7 @@
 import NavBar from "./components/NavBar";
 import LandingPage from "./components/LandingPage";
 import { Routes, Route } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import AboutUs from "./components/AboutUs";
 import DestinationPage from "./components/DestinationPage";
 import Cart from "./components/Cart";
@@ -15,6 +16,9 @@ const App = () => {
   const [ip, setIP] = useState("");
   const [ nearestAirport, setNearestAirport ] = useState('')
   const [tickets, setTickets] = useState([])
+  const [isOpen, setIsOpen] = useState(false);
+  let location = useLocation();
+  const [URL, setURL] = useState( JSON.parse(window.localStorage.getItem("url")))
 
   const [formInput, setFormInput] = useState({
     climate: '',
@@ -43,7 +47,7 @@ const App = () => {
 
   return (
     <>
-      <NavBar tickets={tickets}/>
+      <NavBar tickets={tickets} setTickets={setTickets} isOpen={isOpen} setIsOpen={setIsOpen}/>
       <Routes>
         <Route path="/" element={<LandingPage formInput={formInput} setFormInput={setFormInput} nearestAirport={nearestAirport}/>} />
         
@@ -57,6 +61,7 @@ const App = () => {
               cheapestFlights={cheapestFlights}
               setCheapestFlights={setCheapestFlights}
               formInput={formInput}
+              URL={URL}
             />
           }
         />
@@ -69,6 +74,8 @@ const App = () => {
               formInput={formInput}
               setTickets={setTickets}
               tickets={tickets}
+              isOpen={isOpen}
+              URL={URL}
             />
           }
         />

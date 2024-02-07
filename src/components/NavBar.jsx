@@ -3,8 +3,8 @@ import { useState } from "react";
 import "./NavBar.css"
 import Cart from "./Cart";
 
-const NavBar = ({tickets}) => {
-  const [isOpen, setIsOpen] = useState(false);
+const NavBar = ({tickets, setTickets, isOpen, setIsOpen}) => {
+  
 
   const openModal = () => {
     setIsOpen(true);
@@ -14,9 +14,7 @@ const NavBar = ({tickets}) => {
     setIsOpen(false);
   };
 
-  const handleCheckout = () => {
-    alert(`Purchase Complete! Thanks For Traveling With Simply Travel!`)
-  }
+ 
   return (
     <nav className="nav-bar">
       <h1>
@@ -31,8 +29,7 @@ const NavBar = ({tickets}) => {
             {isOpen && (
               <>
               <div>
-              <Cart tickets={tickets}/>
-              <button onClick={handleCheckout} className="checkout-btn">Checkout</button>
+              <Cart tickets={tickets} setTickets={setTickets}/>
               <button onClick={closeModal} className="close-btn">❌</button>
               </div>
               </>

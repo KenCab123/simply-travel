@@ -12,33 +12,33 @@ const DestinationPage = ({
   destinations,
   cheapestFlights,
   setCheapestFlights,
-  formInput
+  formInput,
+  URL
 }) => {
-  let location = useLocation();
-
-//  let URL = location.state.URL;
-//  console.log(URL)
+  
+  //  let URL = location.state.URL;
+  //  console.log(URL)
   // const [isDataLoaded, setIsDataLoaded] = useState()
-  console.log(JSON.parse(window.localStorage.getItem("url")))
+  // console.log(JSON.parse(window.localStorage.getItem("url")))
   const [error, setError] = useState('')
-  const [URL, setURL] = useState( JSON.parse(window.localStorage.getItem("url")))
   const [loading, setLoading] = useState(false)
   
     useEffect(() => {
       setLoading(true)
       getDestinations().then((data) => {
         setDestinations(data);
-        console.log(`i ran`, data)
-        // console.log(destinations)
+        // console.log(`i ran`, data)
       });
        if (URL) { // Check if URL is truthy and valid
       getCheapestFlight(URL).then((data) => {
         // console.log(`url: `, URL)
         // console.log(`data: `, Object.keys(data.data))
-        // console.log(`data: `, data.data)
         setCheapestFlights(data.data);
+
+        
         // console.log(Object.keys(cheapestFlights))
-        // console.log(`fetch completed`);
+        // console.log(data.data);
+        console.log(`fetch completed`);
       }).then(data => setLoading(false)).catch((error) => {
         console.error('Error fetching cheapest flight:', error);
         setError(`INVALID ORIGIN.`)
@@ -63,8 +63,11 @@ const DestinationPage = ({
          <h1>Results</h1>
          {error && <h2 style={{ color: 'red' , fontSize: '100px', padding: '80px'}}>{error}</h2>}
          {error && <Link to="/">Home</Link>}
+         {console.log(Object.keys(cheapestFlights).length > 0)}
+         {console.log(filteredDestinations)}
        {Object.keys(cheapestFlights).length > 0 ?
         filteredDestinations.map((destination) => {
+          console.log(destination)
           if(findFirstObjectKey(cheapestFlights, destination.iata) === 'No flights available'){
             // console.log(`No flights available.`)
             return;

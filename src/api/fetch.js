@@ -45,3 +45,24 @@ export const getNearestAirport = (ip) => {
 
     return fetch(url).then(response => response.json())
 }
+
+export const updateCheapestFlight = (url) => {
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-Access-Token': token,
+            'X-RapidAPI-Key': apiKey,
+            'X-RapidAPI-Host': 'travelpayouts-travelpayouts-flight-data-v1.p.rapidapi.com',
+        }
+    };
+    return fetch(url, options) .then(response => {
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+      }).then(result => {
+        const data = result.data
+        return data
+      })
+}

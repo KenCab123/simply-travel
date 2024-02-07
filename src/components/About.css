@@ -1,0 +1,50 @@
+/* .devs {
+    display: flex;
+    flex-direction: row;
+     list-style-type: none;
+    margin-top: -460px;
+    position: absolute;
+    padding-bottom: 100px;
+    background: white;
+}
+.dev-div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 470px;
+}
+.dev-div h2 {
+    margin-left: -10px; 
+    margin-top: -50px;
+    text-align: center;
+}
+.dev-div h3 {
+    margin-left: -10px; 
+    margin-top: -10px;
+    text-align: center;
+    color: green;
+    font-weight: lighter;
+}
+.dev-div img {
+    margin-top: 20px;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+}
+.dev-div p {
+    color: green;
+    margin-top: 45px;
+    width: 50%;
+    text-align: center;
+}
+.dev-div ul {
+    margin-top: 20px;
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+}
+.dev-div ul a img{
+    width: 40px;
+    height: 40px;
+} */
